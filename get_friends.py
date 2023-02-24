@@ -36,26 +36,39 @@ def get_the_user_info(my_value):
     time.sleep(10)
     name_element = driver.find_element_by_xpath(
         '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[3]/div/div/div/div/div/span')
-    nickname_element = driver.find_element_by_xpath(
-        '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[3]/div/div/div/div/div/span/h1/span')
+    # nickname_element = driver.find_element_by_xpath(
+    #     '/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[3]/div/div/div/div/div/span/h1/span')
 
     # Extract the first name, last name, and nickname from the elements
     full_name = name_element.text
     print("full name", full_name)
     first_name = full_name.split()[0]
     last_name = full_name.split()[-1]
-    nickname = nickname_element.text
+    # nickname = nickname_element.text
     print("first name:", first_name)
     print("last name:", last_name)
-    print("nick name:", nickname)
-
+    # print("nick name:", nickname)
+    time.sleep(10)
+    # send sms
+    send_message = driver.find_element_by_xpath(
+        "/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div[2]/div/div/div/div[4]/div/div/div[2]/div/div")
+    send_message.click()
     # Load the Excel file
+
+    time.sleep(10)
+    message_text = "hello " + first_name + \
+        " would you like to take our free service ?"
+    print("message: ", message_text)
+    set_message = driver.find_element_by_xpath(
+        "/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]")
+    print("line 64", set_message)
+    set_message.send_keys(set_message)
     workbook = load_workbook('facebook_user_info.xlsx')
 
     # Select the active worksheet
     worksheet = workbook.active
     # Add the data to the Excel file
-    row = [first_name, last_name, nickname]
+    row = [first_name, last_name]
     worksheet.append(row)
 
     # Set the column names
@@ -93,7 +106,7 @@ def login_to_facebook():
     email_input.send_keys('01754627430')
     password_input.send_keys('19171518-Sagor19')
     password_input.send_keys(Keys.RETURN)
-    time.sleep(50)
+    time.sleep(10)
     # # Wait for the login to complete
     # element_present = EC.presence_of_element_located(
     #     (By.ID, 'userNavigationLabel'))
