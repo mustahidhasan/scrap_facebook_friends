@@ -55,29 +55,39 @@ def get_the_user_info(my_value):
     send_message.click()
     # Load the Excel file
 
-    time.sleep(10)
-    message_text = "hello " + first_name + \
-        " would you like to take our free service ?"
-    print("message: ", message_text)
+    time.sleep(20)
+    message_text = "hello " + first_name + " How r you??"
+    # print("message: ", message_text)
     set_message = driver.find_element_by_xpath(
-        "/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]")
-    print("line 64", set_message)
-    set_message.send_keys(set_message)
-    workbook = load_workbook('facebook_user_info.xlsx')
+        "/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]/div/div/div/p")
 
-    # Select the active worksheet
-    worksheet = workbook.active
-    # Add the data to the Excel file
-    row = [first_name, last_name]
-    worksheet.append(row)
+    print("line 64", "set_message")
+    time.sleep(10)
+    set_message.click()
+    set_text = driver.find_element_by_xpath(
+        '/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div/div/div[4]/div[2]/div/div/div/p/span')
+    set_text.send_keys(message_text)
 
-    # Set the column names
-    worksheet.cell(row=1, column=1, value='first_name')
-    worksheet.cell(row=1, column=2, value='last_name')
-    worksheet.cell(row=1, column=3, value='nickname')
+    click_send_button = driver.find_element_by_xpath(
+        "/html/body/div[1]/div/div[1]/div/div[5]/div/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div/span[2]/div")
+    click_send_button.click()
+    print("clicked the msg field")
+    # set_message.send_keys(set_message)
+    # workbook = load_workbook('facebook_user_info.xlsx')
 
-    # Save the changes to the Excel file
-    workbook.save('facebook_user_info.xlsx')
+    # # Select the active worksheet
+    # worksheet = workbook.active
+    # # Add the data to the Excel file
+    # row = [first_name, last_name]
+    # worksheet.append(row)
+
+    # # Set the column names
+    # worksheet.cell(row=1, column=1, value='first_name')
+    # worksheet.cell(row=1, column=2, value='last_name')
+    # worksheet.cell(row=1, column=3, value='nickname')
+
+    # # Save the changes to the Excel file
+    # workbook.save('facebook_user_info.xlsx')
 
 
 def get_the_sheet_file():
