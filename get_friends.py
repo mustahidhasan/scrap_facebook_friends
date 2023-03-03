@@ -108,8 +108,8 @@ def login_to_facebook():
     email_input = driver.find_element_by_name('email')
     password_input = driver.find_element_by_name('pass')
 
-    email_input.send_keys('01754627430')
-    password_input.send_keys('19171518-Sagor19')
+    email_input.send_keys('phone_number')
+    password_input.send_keys('password')
     password_input.send_keys(Keys.RETURN)
     time.sleep(10)
     get_the_sheet_file()
